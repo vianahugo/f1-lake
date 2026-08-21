@@ -1,10 +1,12 @@
 # %%
+import os
+import dotenv
 import nekt
 
-nekt.data_access_token = os.getenv["NEKT_TOKEN"]
-nekt.engine = "spark"
+dotenv.load_dotenv()
 
-spark = nekt.get_spark_session()
+nekt.data_access_token = os.environ["NEKT_TOKEN"]
+nekt.engine = "spark"
 
 # %%
 

@@ -8,7 +8,7 @@ dotenv.load_dotenv()
 from tqdm import tqdm
 
 # %%
-nekt.data_access_token = os.getenv["NEKT_TOKEN"]
+nekt.data_access_token = os.environ["NEKT_TOKEN"]
 nekt.engine = "spark"
 
 # %%
