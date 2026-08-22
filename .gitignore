@@ -4,3 +4,8 @@
 .vscode
 
 __pycache__
+mlartifacts/
+mlruns/
+roc_curve.png
+feature_importances.md
+mlflow.db

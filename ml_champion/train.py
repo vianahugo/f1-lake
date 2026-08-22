@@ -13,7 +13,7 @@ from feature_engine import imputation
 import matplotlib.pyplot as plt
 
 import dotenv
-dotenv.load_dotenv
+dotenv.load_dotenv()
 
 import os
 
@@ -24,7 +24,7 @@ pd.set_option('display.max_rows', None)
 # %%
 
 mlflow.set_tracking_uri(os.getenv("MLFLOW_URI"))
-mlflow.set_experiment(experiment_id=2)
+mlflow.set_experiment(experiment_id=1)
 
 # %%
 df = pd.read_csv("../data/abt_f1_drivers_champion.csv", sep=";")
@@ -76,8 +76,14 @@ df_test = test.merge(df_analytics).merge(df_year_round, how='inner')
 print("Quantidade de linhas train:", df_train.shape)
 print("Quantidade de linhas test:", df_test.shape)
 
-features = df_train.columns[4:]
-features
+NOT_FEATURES = ["id", "driverid", "year", "flChampion", "dt_ref",
+                "fullname", "teamname", "teamcolor"]
+
+features = [c for c in df_train.columns
+            if c not in NOT_FEATURES
+            and pd.api.types.is_numeric_dtype(df_train[c])]
+
+print(f"{len(features)} features")
 
 X_train, y_train =  df_train[features], df_train['flChampion']
 X_test, y_test =  df_test[features], df_test['flChampion']
@@ -146,7 +152,6 @@ with mlflow.start_run():
     feature_importance.to_markdown("feature_importances.md")
     mlflow.log_artifact("feature_importances.md")
 
-    model.fit(df[features], df['flChampion'])
 
     mlflow.sklearn.log_model(
     model,

@@ -7,8 +7,9 @@ dotenv.load_dotenv()
 
 nekt.data_access_token = os.environ["NEKT_TOKEN"]
 nekt.engine = "spark"
+spark = nekt.get_spark_session()
 
-# %%
+ # %%
 
 (nekt.load_table(layer_name="Silver", table_name="fs_f1_driver_all")
      .createOrReplaceTempView("fs_f1_driver_all"))
@@ -37,6 +38,7 @@ SELECT * FROM tb_abt
 """
 
 df = spark.sql(query).toPandas()
+
 # %%
 df.to_csv("../data/abt_f1_drivers_champion.csv", 
           index=False,
