@@ -1,0 +1,5 @@
+nekt
+tqdm
+pandas
+pyarrow
+python-dotenv
