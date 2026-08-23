@@ -1,0 +1,14 @@
+.git
+.github
+.devcontainer
+.vscode
+.streamlit
+__pycache__
+*.pyc
+mlruns/
+mlartifacts/
+mlflow.db
+data/*.parquet
+data/*.csv
+img/
+README.md
