@@ -26,6 +26,8 @@ dessa probabilidade corrida a corrida.
 
 ## Aplicação
 
+**[Acessar a aplicação →](https://f1-lake-vejzebmppasmdxqzzkmglk.streamlit.app/)**
+
 <img src="./img/app.png" width="100%">
 
 Evolução da probabilidade de título ao longo da temporada, com uma linha por
